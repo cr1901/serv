@@ -123,6 +123,11 @@ filesets:
       - servant/servant_ecp5_clock_gen.v : {file_type : verilogSource}
       - servant/servant_ecp5.v : {file_type : verilogSource}
 
+  tinyfpga_ax:
+    files:
+      - data/tinyfpga_ax.lpf : {file_type : LPF}
+      - servant/servant_machxo2.v : {file_type : verilogSource}
+
   upduino2:
     files:
       - servant/servant_upduino2.v : {file_type : verilogSource}
@@ -170,7 +175,7 @@ targets:
         family : MAX 10
         device : 10M50DAF484C6GES
     toplevel: servive
-   
+
   de0_nano:
     default_tool : quartus
     filesets : [mem_files, soc, de0_nano]
@@ -312,6 +317,16 @@ targets:
       - firmware
       - memsize
     toplevel : servant_tb
+
+  tinyfpga_ax:
+    default_tool: diamond
+    description : TinyFPGA Ax
+    filesets : [mem_files, soc, tinyfpga_ax]
+    parameters : [memfile, memsize=512]
+    tools:
+      diamond:
+        part : LCMXO2-1200HC-4SG32C
+    toplevel: servant_machxo2
 
   ulx3s_85:
     default_tool: diamond
